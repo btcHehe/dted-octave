@@ -1,6 +1,17 @@
 # dted
 
-Octave package for parsing DTED (.dt1/.dt2) files. 
+Octave package for parsing DTED (.dt1/.dt2) files. It's base is tile structure which consists of such fields:
+-> origin_lon - origin point longitude coordinate in DMS format [degrees, minutes, seconds]
+-> origin_lat - origin point latitude coordinate in DMS format [degrees, minutes, seconds]
+-> origin_lon_hemisphere - hemisphere indicator for the longitude (W or E)
+-> origin_lat_hemisphere - hemisphere indicator for the latitude (N or S)
+-> lon_step - interval for the longitude in seconds
+-> lat_step - interval for the latitude in seconds
+-> mult_accuracy - multiple accuracy flag (0 - single accuracy; 1 - multiple accuracy)
+-> compile_date - file compilation date MM/YY
+-> lat_num - number of latitudes in file (it's equal to number of rows of terrain elevation matrix)
+-> lon_num - number of longitudes in file (it's equal to number of columns of terrain elevation matrix)
+-> height_mat - terrain elevation matrix
 
 ## Functionalities
 ### Extracting meta-information
