@@ -1,13 +1,6 @@
 # dted
 
-DTED file format specification:
-```
-http://pancroma.com/downloads/MIL-PDF-89020B.pdf
-```
-```
-https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf
-```
-
+# Description
 Octave package for parsing DTED (.dt1/.dt2) files. It's base is tile structure which consists of such fields:
 - origin_lon - origin point longitude coordinate in DMS format [degrees, minutes, seconds]
 - origin_lat - origin point latitude coordinate in DMS format [degrees, minutes, seconds]
@@ -20,6 +13,14 @@ Octave package for parsing DTED (.dt1/.dt2) files. It's base is tile structure w
 - lat_num - number of latitudes in file (it's equal to number of rows of terrain elevation matrix)
 - lon_num - number of longitudes in file (it's equal to number of columns of terrain elevation matrix)
 - height_mat - terrain elevation matrix
+
+# DTED file format specification:
+```
+http://pancroma.com/downloads/MIL-PDF-89020B.pdf
+```
+```
+https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf
+```
 
 ## Functionalities
 ### Extracting meta-information
