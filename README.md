@@ -1,6 +1,6 @@
 # dted
 
-# Description
+## Description
 Octave package for parsing DTED (.dt1/.dt2) files. It's base is tile structure which consists of such fields:
 - origin_lon - origin point longitude coordinate in DMS format [degrees, minutes, seconds]
 - origin_lat - origin point latitude coordinate in DMS format [degrees, minutes, seconds]
@@ -14,7 +14,7 @@ Octave package for parsing DTED (.dt1/.dt2) files. It's base is tile structure w
 - lon_num - number of longitudes in file (it's equal to number of columns of terrain elevation matrix)
 - height_mat - terrain elevation matrix
 
-# DTED file format specification:
+## DTED file format specification:
 ```
 http://pancroma.com/downloads/MIL-PDF-89020B.pdf
 ```
