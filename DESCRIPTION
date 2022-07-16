@@ -1,0 +1,10 @@
+Name: dted
+Version: 1.0.0
+Date: 16-07-2022
+Author: Bartosz Czaja
+Maintainer: Bartosz Czaja
+Title: DTED files parser
+Description: Simple Octave package for parsing DTED (.dt1/.dt2) files. It constructs structure ('tile') containing all the most important data.
+License: GPLv3+
+Categories: DTED
+Url: https://github.com/btcHehe/dted-octave
