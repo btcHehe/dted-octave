@@ -14,8 +14,7 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{terrain_height} =} get_elevation (@var{latitude}, @var{longitude}
-## , @var{tile})
+## @deftypefn {} {@var{terrain_height} =} get_elevation (@var{latitude}, @var{longitude}, @var{tile})
 ## @var{latitude} - floating point latitude coordinate
 ## @var{longitude} - floating point longitude coordinate
 ## @var{tile} - tile we want terrain elevation from

@@ -22,6 +22,19 @@ http://pancroma.com/downloads/MIL-PDF-89020B.pdf
 https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf
 ```
 
+## Installation
+Download dted.tar.gz file from releases, navigate in Octave to the directory where this file is stored and run command (in Octave Command Window):
+```
+pkg install dted.tar.gz
+```
+If installation didn't throw any error it mean that the package was installed successfully.
+
+## Usage
+In order to use the package, you need to load it. To do that you need to run this command (also in Octave Command Window):
+```
+pkg load dted
+```
+
 ## Functionalities
 ### Extracting meta-information
 ```matlab

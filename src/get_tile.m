@@ -15,7 +15,7 @@
 
 ## -*- texinfo -*-
 ## @deftypefn {get_tile} {@var{tile} =} get_data (@var{file_name})
-## @var{file_name) - path to the DTED file that is to be read
+## @var{file_name} - path to the DTED file that is to be read
 ## Returns tile structure containing most important data
 ## from DTED file to which path is passed as argument @var{file_name}
 ## tile struct fields:
@@ -31,14 +31,14 @@
 ## -> lon_num - number of longitudes in file (it's equal to number of columns of terrain elevation matrix)
 ## -> height_mat - terrain elevation matrix
 ##
-## @seealso{}
+## Script written using specification declared:
+## https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf
+## @seealso{https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf}
 ## @end deftypefn
 
 ## Author: Bartosz Czaja
 ## Created: 2022-07-15
 
-## Script written using specification declared:
-## https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf
 
 function tile = get_tile(file_name)
   bin_file = fopen(file_name);
