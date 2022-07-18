@@ -36,39 +36,37 @@ pkg load dted
 ```
 
 ## Functionalities
-### Extracting meta-information
+
+### Present the tile metadata
 ```matlab
 t = get_tile('s55_w069.dt2');
-prinf(t.origin_lon);
-printf(t.origin_lat);
-printf(t.origin_lon_hemisphere);
-printf(t.origin_lat_hemisphere);
-printf(t.lon_step);
-printf(t.lat_step);
-printf(t.mult_accuracy);
-printf(t.compile_date);
-printf(t.lat_num);
-printf(t.lon_num)
+present_tile(t);
 ```
 
 ### Plot terrain elevation data as surface in 3D
 ```matlab
 t = get_tile('s55_w069.dt2');
-cutout = 100;   % for entire data surface in 3D is badly optimized and can crash octave
-% highly recommended cutout smaller portions of terrain for 3D plotting
-z = t.height_mat(1:cutout/t.lat_step, 1:cutout/t.lon_step);
-x = 1:1:cutout/t.lon_step;
-y = 1:1:cutout/t.lat_step;
+% highly recommended to cutout smaller portions of terrain for 3D plotting
+% because the plot engine gets very laggy with that many points
+top_right = [55.564234, 69.041133];
+bot_left = [55.607654, 69.106438];	% in this example tile is in SW hemisphere so the bottom left corner looks like that
+cut = terrain_cutout(bot_left, top_right, t);
+x = 1:1:columns(cut);			% x axis in seconds
+y = 1:1:rows(cut);			% y axis in seconds
+[xm, ym] = meshgrid(x, y);
+mesh(x, y, cut);
 ```
 
 ### Plot terrain elevation data as heatmap
 ```matlab
 t = get_tile('s55_w069.dt2');
-% heatmap for entire terrain could be a little bit laggy but it shouldn't crash octave
-z = t.height_mat;
-% x and y axes are in seconds
-x = 1:1:t.lon_num;
-y = 1:1:t.lat_num;
+% heatmap for the entire tile could be a little bit laggy
+z = t.height_mat;			% z axis in meters
+x = 1:1:t.lon_num;			% x axis in seconds
+y = 1:1:t.lat_num;			% y axis in seconds
+colormap('jet');
+colorbar();
+imagesc(x, y, z);
 ```
 
 ### Get terrain elevation in given point
@@ -78,3 +76,23 @@ LAT = 54.532421;
 LON = 68.234432;
 h = get_elevation(LAT, LON, t)
 ```
+
+### Transform coordinates from floating point to DMS format and the other way
+```matlab
+LAT = 54.532421;
+LON_DMS = [55, 24, 23];
+LAT_DMS = float_to_dms(LAT);
+LON = dms_to_float(LON_DMS);
+```
+
+### Check if the point on given coordinates is inside the tile
+```matlab
+t = get_tile('s55_w069.dt2');
+LAT = 54.54234;
+LON = 68.12343;
+flag = is_in_tile(LAT, LON, t)
+LAT = 55.54234;
+LON = 69.12343;
+flag = is_in_tile(LAT, LON, t)
+```
+

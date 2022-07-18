@@ -39,52 +39,35 @@ function terrain_height = get_elevation (latitude, longitude, tile)
   % SW: top right element _ (origin_lat - 1, origin_lon - 1)
 
   %check if the point is in given tile
-  in_tile_flag = false;
+  in_tile_flag = is_in_tile(latitude, longitude, tile);
   lat_edge_flag = false;
   lon_edge_flag = false;
-  if (tile.origin_lon_hemisphere == "E")
-    if (tile.origin_lat_hemisphere == "N")
-      if (tile.origin_lat(1) <= latitude && tile.origin_lat(1) + 1 >= latitude)
-        if (tile.origin_lon(1) <= longitude && tile.origin_lon(1) + 1 >= longitude)
-          in_tile_flag = true;    % in NE inside tile
-          if (latitude == tile.origin_lat(1) + 1)
-            lat_edge_flag = true;
-          endif
-          if (longitude == tile.origin_lon(1) + 1)
-            lon_edge_flag = true;
-          endif
+  if (in_tile_flag == true)
+    if (tile.origin_lon_hemisphere == "E")
+      if (tile.origin_lat_hemisphere == "N")
+        if (latitude == tile.origin_lat(1) + 1)
+          lat_edge_flag = true;
+        endif
+        if (longitude == tile.origin_lon(1) + 1)
+          lon_edge_flag = true;
+        endif
+      elseif (tile.origin_lat_hemisphere == "S")
+        if (latitude == tile.origin_lat(1) - 1)
+          lat_edge_flag = true;
+        endif
+        if (longitude == tile.origin_lon(1) + 1)
+          lon_edge_flag = true;
         endif
       endif
-    elseif (tile.origin_lat_hemisphere == "S")
-      if (tile.origin_lat(1) >= latitude && tile.origin_lat(1) - 1 <= latitude)
-        if (tile.origin_lon(1) <= longitude && tile.origin_lon(1) + 1 >= longitude)
-          in_tile_flag = true;    % in SE inside tile
-          if (latitude == tile.origin_lat(1) - 1)
-            lat_edge_flag = true;
-          endif
-          if (longitude == tile.origin_lon(1) + 1)
-            lon_edge_flag = true;
-          endif
-        endif
-      endif
-    endif
-  elseif (tile.origin_lon_hemisphere == "W")
-    if (tile.origin_lat(end) == "N")
-      if (tile.origin_lat(1) <= floor(latitude) && tile.origin_lat(1) + 1 >= floor(latitude))
-        if (tile.origin_lon(1) >= longitude && tile.origin_lon(1) - 1 <= longitude)
-          in_tile_flag = true;    % in NW inside tile
+    elseif (tile.origin_lon_hemisphere == "W")
+        if (tile.origin_lat(end) == "N")
           if (latitude == tile.origin_lat(1) + 1)
             lat_edge_flag = true;
           endif
           if (longitude == tile.origin_lon(1) - 1)
             lon_edge_flag = true;
           endif
-        endif
-      endif
-    elseif (tile.origin_lat_hemisphere == "S")
-      if (tile.origin_lat(1) >= latitude && tile.origin_lat(1) - 1 <= latitude)
-        if (tile.origin_lon(1) >= longitude && tile.origin_lon(1) - 1 <= longitude)
-          in_tile_flag = true;   % in SW inside tile
+        elseif (tile.origin_lat_hemisphere == "S")
           if (latitude == tile.origin_lat(1) - 1)
             lat_edge_flag = true;
           endif
@@ -92,11 +75,8 @@ function terrain_height = get_elevation (latitude, longitude, tile)
             lon_edge_flag = true;
           endif
         endif
-      endif
     endif
-  endif
-
-  if (in_tile_flag == false)
+  elseif (in_tile_flag == false)
     terrain_height = 0;
     error("ERROR, the given tile does not consist the point %d, %d \n", latitude, longitude);
     return

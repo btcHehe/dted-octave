@@ -92,7 +92,18 @@ function tile = get_tile(file_name)
     terrain_mat(terrain_mat < -12000) = 0;   % convert void data to 0
   endif
 
-  terrain_mat =  flipud(terrain_mat);
+  if (tile.origin_lon_hemisphere == "E" && tile.origin_lat_hemisphere == "N")
+    terrain_mat = terrain_mat';
+    terrain_mat = rot90(terrain_mat, 1);
+  elseif (tile.origin_lon_hemisphere == "W" && tile.origin_lat_hemisphere == "N")
+    terrain_mat = flipud(terrain_mat);
+  elseif (tile.origin_lon_hemisphere == "E" && tile.origin_lat_hemisphere == "S")
+    terrain_mat = terrain_mat';
+    terrain_mat = rot90(terrain_mat, 1);
+  elseif (tile.origin_lon_hemisphere == "W" && tile.origin_lat_hemisphere == "S")
+    terrain_mat = flipud(terrain_mat);
+  endif
+
 
   % lower left point of terrain elevation matrix is always the origin point
   % matrix dimensions on hemishpheres on top right element example:
@@ -100,6 +111,7 @@ function tile = get_tile(file_name)
   % SE: top right element - (origin_lat - 1, origin_lon + 1)
   % NW: top right element - (origin_lat + 1, origin_lon - 1)
   % SW: top right element _ (origin_lat - 1, origin_lon - 1)
+
   tile.height_mat = terrain_mat;
   return
 endfunction
