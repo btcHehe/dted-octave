@@ -15,12 +15,8 @@ Octave package for parsing DTED (.dt1/.dt2) files. It's base is tile structure w
 - height_mat - terrain elevation matrix
 
 ## DTED file format specification:
-```
-http://pancroma.com/downloads/MIL-PDF-89020B.pdf
-```
-```
-https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf
-```
+- [http://pancroma.com/downloads/MIL-PDF-89020B.pdf](http://pancroma.com/downloads/MIL-PDF-89020B.pdf)
+- [https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf](https://www.dlr.de/eoc/Portaldata/60/Resources/dokumente/7_sat_miss/SRTM-XSAR-DEM-DTED-1.1.pdf)
 
 ## Installation
 Download dted.tar.gz file from releases, navigate in Octave to the directory where this file is stored and run command (in Octave Command Window):
